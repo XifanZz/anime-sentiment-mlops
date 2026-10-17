@@ -6,3 +6,4 @@ mlruns/
 mlartifacts/
 data/*.csv
 .env
+mlflow.db
