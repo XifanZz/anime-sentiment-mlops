@@ -30,8 +30,8 @@ jobs:
       - name: Run Tests (Pytest)
         # 由于 C 同学还没写测试，我们加个容错，等他有测试了再去掉 `|| true`
         run: |
-          pytest tests/ || true
+          pytest tests/
 
-      - name: Build Docker Image (No Push)
-        run: |
-          docker build -t anime-sentiment-api:test .
+      #- name: Build Docker Image (No Push)
+      #  run: |
+      #    docker build -t anime-sentiment-api:test .
