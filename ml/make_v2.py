@@ -1,5 +1,7 @@
-import pandas as pd
 import os
+
+import pandas as pd
+
 
 def main():
     v1_path = "data/anime_sentiment_balanceado.csv"

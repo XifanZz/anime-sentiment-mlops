@@ -1,12 +1,13 @@
-import pandas as pd
+import os
+
 import mlflow
 import mlflow.sklearn
-from sklearn.model_selection import train_test_split
+import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
-from sklearn.pipeline import Pipeline
 from sklearn.metrics import accuracy_score, f1_score
-import os
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import Pipeline
 
 # 1. 读取数据
 data_path = "data/anime_sentiment_balanceado.csv"
@@ -56,5 +57,5 @@ with mlflow.start_run(run_name="TFIDF_LogReg_v1"):
     # 记录模型
     mlflow.sklearn.log_model(pipeline, "baseline_model")
     
-    print(f"✅ Training complete!")
+    print("✅ Training complete!")
     print(f"Accuracy: {acc:.4f}, F1-Score: {f1:.4f}")
