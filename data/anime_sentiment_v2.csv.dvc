@@ -1,0 +1,5 @@
+outs:
+- md5: 8682486d5db27371160e8125965821bd
+  size: 13147074
+  hash: md5
+  path: anime_sentiment_v2.csv
