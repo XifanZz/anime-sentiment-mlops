@@ -8,3 +8,4 @@ data/*.csv
 .env
 mlflow.db
 *.pkl
+models/*.pkl
