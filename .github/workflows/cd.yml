@@ -7,6 +7,9 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write # 允许推送到 GitHub 镜像仓库
 
     steps:
       - name: Checkout code
@@ -15,25 +18,25 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      
-        # 登录 Docker Hub
-      - name: Log in to Docker Hub
+      # 登录到 GitHub 自己的镜像仓库 (GHCR)
+      - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }} # 这是 GitHub 自动生成的，不用手动配 Secret！
 
-      # 自动生成镜像标签（比如分支名和 commit 哈希）
+      # 自动生成标签
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ secrets.DOCKERHUB_USERNAME }}/anime-sentiment-api
+          images: ghcr.io/${{ github.repository }}/anime-sentiment-api
           tags: |
             type=ref,event=branch
             type=sha,format=short
 
-      # 构建并推送到 Docker Hub
+      # 构建并推送
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
