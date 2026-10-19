@@ -1,0 +1,37 @@
+name: CI Pipeline
+
+on:
+  pull_request:
+    branches: [ "dev", "main" ]
+
+jobs:
+  quality-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Linting (Ruff)
+        run: |
+          pip install ruff
+          ruff check .
+
+      - name: Run Tests (Pytest)
+        # 由于 C 同学还没写测试，我们加个容错，等他有测试了再去掉 `|| true`
+        run: |
+          pytest tests/
+
+      #- name: Build Docker Image (No Push)
+      #  run: |
+      #    docker build -t anime-sentiment-api:test .
