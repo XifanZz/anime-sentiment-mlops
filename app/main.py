@@ -1,7 +1,8 @@
+import os
+
+import joblib
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-import joblib
-import os
 
 app = FastAPI(title="Anime Sentiment Analyzer API")
 

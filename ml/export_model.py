@@ -1,7 +1,8 @@
+import os
+
+import joblib
 import mlflow
 import mlflow.sklearn
-import os
-import joblib
 
 # 设置为本地 mlruns 目录
 mlflow.set_tracking_uri("file:./mlruns")
