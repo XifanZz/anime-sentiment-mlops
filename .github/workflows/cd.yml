@@ -15,11 +15,6 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Debug Secrets
-        run: |
-          echo "Username is: ${{ secrets.DOCKERHUB_USERNAME }}"
-          if [ -z "${{ secrets.DOCKERHUB_TOKEN }}" ]; then echo "Token is EMPTY"; else echo "Token is SET"; fi
-      
       
         # 登录 Docker Hub
       - name: Log in to Docker Hub
