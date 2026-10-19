@@ -1,6 +1,8 @@
 from fastapi.testclient import TestClient
-from app.main import app, model
+
 import app.main as main_module
+from app.main import app
+
 
 # 💡 DevOps 技巧：在 CI 环境中，模型文件通常不存在。
 # 我们在这里注入一个 Mock 模型，专门用来测试 API 逻辑，而不依赖真实的 .pkl 文件。
