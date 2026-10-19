@@ -2,9 +2,9 @@ import os
 
 import joblib
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel
 
 # 1. 初始化 FastAPI 应用
 app = FastAPI(title="Anime Sentiment Analyzer API")
